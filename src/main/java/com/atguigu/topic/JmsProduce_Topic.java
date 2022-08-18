@@ -1,4 +1,4 @@
-package com.atguigu.queue;
+package com.atguigu.topic;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -6,13 +6,13 @@ import javax.jms.*;
 
 /**
  * @author hxld
- * @create 2022-08-18 10:29
+ * @create 2022-08-18 16:30
  */
-public class JmsProduce {
-
+public class JmsProduce_Topic {
 //    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61616";
-    public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
-    public static final String QUEUE_NAME = "queue01";
+        public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
+
+    public static final String TOPIC_NAME = "topic-atguigu";
 
     public static void main(String[] args) throws JMSException {
         //1.创建连接工程，按照给定的url地址，采用默认用户名和密码
@@ -23,7 +23,7 @@ public class JmsProduce {
         connection.start();
 
         //3.创建会话session
-        //两个参数，第一个叫做事务/第二个叫做签收（boolean b,int i） AUTO_ACKNOWLEDGE 自动默认签收
+        //两个参数，第一个叫做事务/第二个叫做签收（boolean b,int i）AUTO_ACKNOWLEDGE 自动默认签收
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         //4.创建目的地（具体是队列还是主题topic）
@@ -31,26 +31,15 @@ public class JmsProduce {
         //destination的子接口有queue topic 父接口一般是定义规范。子接口一般是实现更加强大的功能
 //        Destination destination = session.createQueue(QUEUE_NAME);     //和集合接口我们常用arraylist接口一样  collection collection = new arrayList;
 
-        Queue queue = session.createQueue(QUEUE_NAME);
+        Topic topic = session.createTopic(TOPIC_NAME);
 
         //5. 创建消息的生产者
-        MessageProducer messageProducer = session.createProducer(queue);
-        //没有持久化
-//        messageProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
-        messageProducer.setDeliveryMode(DeliveryMode.PERSISTENT);  //默认持久化
+        MessageProducer messageProducer = session.createProducer(topic);
         //6.通过使用  MessageProducer  生产3条消息发送到mq队列里面
-        for (int i = 1; i <= 3 ; i++) {
+        for (int i = 1; i <= 3; i++) {
             //7.创建消息
-            TextMessage textMessage = session.createTextMessage("msg ---" + i);  //理解为一个字符串
-            //设置消息属性
-//            textMessage.setStringProperty("c01","vip");
-//            TextMessage textMessage = session.createTextMessage("messagelistener ---" + i); //测试监听器
+            TextMessage textMessage = session.createTextMessage("TOPIC_NAME---" + i);  //理解为一个字符串
 
-            //mapmessage
-          /*  MapMessage mapMessage = session.createMapMessage();
-            mapMessage.setString("k1","mapmessage -- v1");
-            messageProducer.send(mapMessage);
-*/
 
             //8.通过  messageProducer 发送给mq
             messageProducer.send(textMessage);
@@ -60,6 +49,6 @@ public class JmsProduce {
         session.close();
         connection.close();
 
-        System.out.println("消息发送成功");
+        System.out.println("TOPIC-NAME消息发送到MQ完成");
     }
 }

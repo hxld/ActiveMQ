@@ -1,4 +1,4 @@
-package com.atguigu.queue;
+package com.atguigu.topic;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -10,7 +10,9 @@ import java.io.IOException;
  * @create 2022-08-18 16:30
  */
 public class JmsConsumer_Topic {
-    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61616";
+//    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61616";
+public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
+
     public static final String TOPIC_NAME = "topic-atguigu";
 
     public static void main(String[] args) throws JMSException, IOException {
