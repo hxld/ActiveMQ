@@ -34,17 +34,22 @@ public class JmsProduce {
 
         //5. 创建消息的生产者
         MessageProducer messageProducer = session.createProducer(queue);
+        //没有持久化
+//        messageProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+        messageProducer.setDeliveryMode(DeliveryMode.PERSISTENT);  //默认持久化
         //6.通过使用  MessageProducer  生产3条消息发送到mq队列里面
         for (int i = 1; i <= 3 ; i++) {
             //7.创建消息
             TextMessage textMessage = session.createTextMessage("msg ---" + i);  //理解为一个字符串
+            //设置消息属性
+//            textMessage.setStringProperty("c01","vip");
 //            TextMessage textMessage = session.createTextMessage("messagelistener ---" + i); //测试监听器
 
             //mapmessage
-            MapMessage mapMessage = session.createMapMessage();
+          /*  MapMessage mapMessage = session.createMapMessage();
             mapMessage.setString("k1","mapmessage -- v1");
             messageProducer.send(mapMessage);
-
+*/
 
             //8.通过  messageProducer 发送给mq
             messageProducer.send(textMessage);

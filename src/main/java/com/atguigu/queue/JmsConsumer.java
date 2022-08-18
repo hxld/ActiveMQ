@@ -17,7 +17,7 @@ public class JmsConsumer {
     public static void main(String[] args) throws JMSException, IOException {
 
 //        System.out.println("我是1号消费者");
-        System.out.println("我是2号消费者");
+//        System.out.println("我是2号消费者");
 
         //1.创建连接工程，按照给定的url地址，采用默认用户名和密码
         //为什么要创建一个全局常量，是因为如果我们在创建对象的过程中直接写地址，那就是写死了，修改不方便。而创建一个全局常量，修改方便
@@ -70,17 +70,19 @@ public class JmsConsumer {
         messageConsumer.setMessageListener(new MessageListener() {
             @Override
             public void onMessage(Message message) {
-                /*if(message != null && message instanceof TextMessage){
+                if(message != null && message instanceof TextMessage){
                     TextMessage textMessage = (TextMessage) message;
                     try {
                         System.out.println("消费者接收到消息："+textMessage.getText());
+//                        System.out.println("消费者接收到消息属性："+textMessage.getStringProperty("c01"));
                     } catch (JMSException e) {
                         e.printStackTrace();
                     }
-                }*/
-
+                }
+            }
+        });
                 //mapmessage
-                if(message != null && message instanceof MapMessage){
+             /* if(message != null && message instanceof MapMessage){
                     MapMessage mapMessage = (MapMessage) message;
                     try {
                         System.out.println("消费者接收到消息："+mapMessage.getString("k1"));
@@ -88,8 +90,10 @@ public class JmsConsumer {
                         e.printStackTrace();
                     }
                 }
-            }
-        });
+         }
+        });*/
+
+
         //防止执行太快，保证控制台不灭
         //因为消费者进行连接到消息中间件，会有一系列验证，如果不写 System.in.read();这个，程序会马上执行完，但是消费者不会接收到任何消息
         System.in.read();
