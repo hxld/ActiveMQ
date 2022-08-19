@@ -12,7 +12,10 @@ import java.io.IOException;
 public class JmsConsumer {
 
 //    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61616";
-        public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
+    //broker实例
+    public static final String ACTIVEMQ_URL = "tcp://localhost:61616";
+
+//        public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
 
     public static final String QUEUE_NAME = "queue01";
 
@@ -76,7 +79,9 @@ public class JmsConsumer {
                     TextMessage textMessage = (TextMessage) message;
                     try {
                         System.out.println("消费者接收到消息："+textMessage.getText());
-//                        System.out.println("消费者接收到消息属性："+textMessage.getStringProperty("c01"));
+
+                        System.out.println("消费者接收到消息属性："+textMessage.getStringProperty("c01"));
+
                     } catch (JMSException e) {
                         e.printStackTrace();
                     }
@@ -84,7 +89,7 @@ public class JmsConsumer {
             }
         });
                 //mapmessage
-             /* if(message != null && message instanceof MapMessage){
+            /*  if(message != null && message instanceof MapMessage){
                     MapMessage mapMessage = (MapMessage) message;
                     try {
                         System.out.println("消费者接收到消息："+mapMessage.getString("k1"));

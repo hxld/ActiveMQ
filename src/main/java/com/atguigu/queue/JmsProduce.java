@@ -11,7 +11,9 @@ import javax.jms.*;
 public class JmsProduce {
 
 //    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61616";
-    public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
+        //broker实例
+    public static final String ACTIVEMQ_URL = "tcp://localhost:61616";
+//    public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
     public static final String QUEUE_NAME = "queue01";
 
     public static void main(String[] args) throws JMSException {
@@ -43,14 +45,14 @@ public class JmsProduce {
             //7.创建消息
             TextMessage textMessage = session.createTextMessage("msg ---" + i);  //理解为一个字符串
             //设置消息属性
-//            textMessage.setStringProperty("c01","vip");
+            textMessage.setStringProperty("c01","vip");
+
 //            TextMessage textMessage = session.createTextMessage("messagelistener ---" + i); //测试监听器
 
             //mapmessage
-          /*  MapMessage mapMessage = session.createMapMessage();
+         /*   MapMessage mapMessage = session.createMapMessage();
             mapMessage.setString("k1","mapmessage -- v1");
-            messageProducer.send(mapMessage);
-*/
+            messageProducer.send(mapMessage);*/
 
             //8.通过  messageProducer 发送给mq
             messageProducer.send(textMessage);
