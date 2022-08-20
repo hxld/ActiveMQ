@@ -11,9 +11,11 @@ import java.io.IOException;
  */
 public class JmsConsumer {
 
-//    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61616";
+//    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61608";
+    //测试nio协议
+    public static final String ACTIVEMQ_URL = "nio://192.168.119.100:61608";
     //broker实例
-    public static final String ACTIVEMQ_URL = "tcp://localhost:61616";
+//    public static final String ACTIVEMQ_URL = "tcp://localhost:61616";
 
 //        public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
 

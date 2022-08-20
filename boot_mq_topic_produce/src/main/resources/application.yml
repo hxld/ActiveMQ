@@ -1,0 +1,16 @@
+#微服务端口
+server:
+  port: 6666
+
+spring:
+  activemq:
+    broker-url: tcp://192.168.119.100:61616   #自己的MQ服务器地址
+    user: admin
+    password: admin
+  jms:
+    pub-sub-domain: true
+
+
+#自己定义队列名称(k:v键值对)
+#yml配置文件遇到“：”或者“-”后面必须留一个空格！否则报错
+mytopic: boot-activemq-topic
