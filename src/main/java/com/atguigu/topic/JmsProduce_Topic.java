@@ -12,7 +12,8 @@ public class JmsProduce_Topic {
 //    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61616";
         public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
 
-    public static final String TOPIC_NAME = "topic-atguigu";
+//    public static final String TOPIC_NAME = "topic-atguigu";
+    public static final String TOPIC_NAME = "jdbc";
 
     public static void main(String[] args) throws JMSException {
         //1.创建连接工程，按照给定的url地址，采用默认用户名和密码
@@ -35,6 +36,10 @@ public class JmsProduce_Topic {
 
         //5. 创建消息的生产者
         MessageProducer messageProducer = session.createProducer(topic);
+
+        //持久化
+        messageProducer.setDeliveryMode(DeliveryMode.PERSISTENT);
+
         //6.通过使用  MessageProducer  生产3条消息发送到mq队列里面
         for (int i = 1; i <= 3; i++) {
             //7.创建消息

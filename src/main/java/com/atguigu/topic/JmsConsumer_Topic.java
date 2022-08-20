@@ -13,7 +13,8 @@ public class JmsConsumer_Topic {
 //    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61616";
 public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
 
-    public static final String TOPIC_NAME = "topic-atguigu";
+//    public static final String TOPIC_NAME = "topic-atguigu";
+    public static final String TOPIC_NAME = "jdbc";
 
     public static void main(String[] args) throws JMSException, IOException {
 //        System.out.println("我是1号消费者");
@@ -34,6 +35,7 @@ public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
 
         //4.创建目的地（具体是队列还是主题topic）
         Topic topic = session.createTopic(TOPIC_NAME);
+
 
         //5. 创建消息的消费者
         MessageConsumer messageConsumer = session.createConsumer(topic);

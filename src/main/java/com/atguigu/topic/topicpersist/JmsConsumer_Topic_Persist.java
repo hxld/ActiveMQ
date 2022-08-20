@@ -16,7 +16,7 @@ public class JmsConsumer_Topic_Persist {
 
     public static void main(String[] args) throws JMSException, IOException {
 //        System.out.println("*****z3");
-        System.out.println("*****z4");
+//        System.out.println("*****z4");
 
         //1.创建连接工程，按照给定的url地址，采用默认用户名和密码
         ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);

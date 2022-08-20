@@ -12,11 +12,12 @@ public class JmsProduce {
 
 //    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61608";
     //测试nio协议
-    public static final String ACTIVEMQ_URL = "nio://192.168.119.100:61608";
+//    public static final String ACTIVEMQ_URL = "nio://192.168.119.100:61608";
         //broker实例
 //    public static final String ACTIVEMQ_URL = "tcp://localhost:61616";
-//    public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
-    public static final String QUEUE_NAME = "queue01";
+    public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
+//    public static final String QUEUE_NAME = "queue01";
+    public static final String QUEUE_NAME = "jdbc";
 
     public static void main(String[] args) throws JMSException {
         //1.创建连接工程，按照给定的url地址，采用默认用户名和密码
@@ -45,9 +46,9 @@ public class JmsProduce {
         //6.通过使用  MessageProducer  生产3条消息发送到mq队列里面
         for (int i = 1; i <= 3 ; i++) {
             //7.创建消息
-            TextMessage textMessage = session.createTextMessage("msg ---" + i);  //理解为一个字符串
+            TextMessage textMessage = session.createTextMessage("jdbcmsg ---" + i);  //理解为一个字符串
             //设置消息属性
-            textMessage.setStringProperty("c01","vip");
+//            textMessage.setStringProperty("c01","vip");
 
 //            TextMessage textMessage = session.createTextMessage("messagelistener ---" + i); //测试监听器
 
