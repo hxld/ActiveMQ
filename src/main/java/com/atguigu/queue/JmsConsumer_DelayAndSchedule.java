@@ -9,28 +9,18 @@ import java.io.IOException;
  * @author hxld
  * @create 2022-08-18 10:29
  */
-public class JmsConsumer {
+public class JmsConsumer_DelayAndSchedule {
 
-//    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61608";
-    //测试nio协议
-//    public static final String ACTIVEMQ_URL = "nio://192.168.119.100:61608";
-    //broker实例
-    public static final String ACTIVEMQ_URL = "tcp://localhost:61616";
-
-//        public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
-//    public static final  String ACTIVEMQ_URL = "failover:(tcp://192.168.119.100:61616,tcp://192.168.119.110:61617,tcp://192.168.119.120:61618)?randomize=false";
-//    public static  final  String QUEUE_NAME = "queue-cluster";
+    public static final String ACTIVEMQ_URL = "tcp://192.168.119.100:61616";
 
     public static final String QUEUE_NAME = "queue01";
-//    public static final String QUEUE_NAME = "jdbc";
+
 
     public static void main(String[] args) throws JMSException, IOException {
 
-//        System.out.println("我是1号消费者");
-//        System.out.println("我是2号消费者");
 
         //1.创建连接工程，按照给定的url地址，采用默认用户名和密码
-        //为什么要创建一个全局常量，是因为如果我们在创建对象的过程中直接写地址，那就是写死了，修改不方便。而创建一个全局常量，修改方便
+
         ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(ACTIVEMQ_URL);
         //2.通过连接工场，获得连接connection并启动访问
         Connection connection = activeMQConnectionFactory.createConnection();
@@ -41,8 +31,6 @@ public class JmsConsumer {
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
         //4.创建目的地（具体是队列还是主题topic）
-
-
         Queue queue = session.createQueue(QUEUE_NAME);
 
         //5. 创建消息的消费者

@@ -16,8 +16,10 @@ public class JmsProduce {
         //broker实例
 //    public static final String ACTIVEMQ_URL = "tcp://localhost:61616";
     public static final String ACTIVEMQ_URL = "tcp://192.168.76.100:61616";
-//    public static final String QUEUE_NAME = "queue01";
-    public static final String QUEUE_NAME = "jdbc";
+    public static final String QUEUE_NAME = "queue01";
+//    public static final String QUEUE_NAME = "jdbc";
+//    public static final  String ACTIVEMQ_URL = "failover:(tcp://192.168.119.100:61616,tcp://192.168.119.110:61617,tcp://192.168.119.120:61618)?randomize=false";
+//    public static  final  String QUEUE_NAME = "queue-cluster";
 
     public static void main(String[] args) throws JMSException {
         //1.创建连接工程，按照给定的url地址，采用默认用户名和密码
